@@ -9,6 +9,9 @@ RUN curl -o aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/
 RUN chmod +x ./aws-iam-authenticator
 RUN mkdir -p $HOME/bin && cp ./aws-iam-authenticator $HOME/bin/aws-iam-authenticator && export PATH=$PATH:$HOME/bin
 RUN echo 'export PATH=$PATH:$HOME/bin' >> ~/.bashrc
+RUN source ~/.bashrc
+RUN apk add git bash
+RUN helm plugin install https://github.com/hypnoglow/helm-s3.git && mkdir ~/.aws
 
 WORKDIR /config
 
